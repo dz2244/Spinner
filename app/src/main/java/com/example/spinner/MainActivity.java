@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView lv;
     Spinner spinner;
 
+    String strBD,strFN,strLN,strPN,strName;
+    int index = 0;
+
+    String[] names = {};
     String[] names1 = { "amir killer", "idan ddkkddk", "doron smith", "deadpool xoxo", "nadav hunter", "alvira moon", "aylon storm", "eden blaze", "adva shadow", "lior viper" };
     String[] names2 = { "michael fox", "noa blue", "gili emerald", "shira royal", "yair wolf", "daniel steel", "ron phoenix", "yael frost", "ziv star", "maya dream" };
     String[] names3 = { "omer dark", "tomer king", "guy ocean", "neta flame", "shani shadow", "itai storm", "gilad sun", "hila star", "ella blaze", "avi night" };
@@ -32,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String[] phoneNumbers4 = { "053-9876543", "053-8765432", "053-7654321", "053-6543210", "053-5432109", "053-4321098", "053-3210987", "053-2109876", "053-1098765", "053-0987654" };
 
 
-    String selectedItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         lv = findViewById(R.id.lv);
         spinner = findViewById(R.id.spinner);
 
-        ArrayAdapter<String> adpLv = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item ,names1);
+        ArrayAdapter<String> adpLv = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item ,names);
         lv.setAdapter(adpLv);
 
         ArrayAdapter<String> adpS = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item ,classes);
@@ -57,7 +61,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(position == 1) {
+        index = position;
+        if(position == 0) {
+            ArrayAdapter<String> adpLv = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item ,names);
+            lv.setAdapter(adpLv);
+
+            tvFN.setText("First Name: ");
+            tvLN.setText("Last Name: ");
+            tvBD.setText("Birth Date: ");
+            tvPN.setText("Phone Number: ");
+
+        }
+        else if(position == 1) {
             ArrayAdapter<String> adpLv = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item ,names1);
             lv.setAdapter(adpLv);
         }
@@ -82,10 +97,37 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        tvFN.setText("First Name: " + names1[position]);
-        tvLN.setText("Last Name: " + names1[position]);
-        tvBD.setText("Birth Date: " + birthdays1[position]);
-        tvPN.setText("Phone Number: " + phoneNumbers1[position]);
+        if(index == 0){
+            Toast.makeText(this, "enter class", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (index == 1) {
+            strBD = birthdays1[position];
+            strPN = phoneNumbers1[position];
+            strName = names1[position];
+        }
+        else if (index == 2) {
+            strBD = birthdays2[position];
+            strPN = phoneNumbers2[position];
+            strName = names2[position];
+        }
+        else if (index == 3) {
+            strBD = birthdays3[position];
+            strPN = phoneNumbers3[position];
+            strName = names3[position];
+        }
+        else if (index == 4) {
+            strBD = birthdays4[position];
+            strPN = phoneNumbers4[position];
+            strName = names4[position];
+        }
+        String[] nameParts = strName.split(" ");
+        strFN = nameParts[0];
+        strLN = nameParts[1];
 
+        tvFN.setText("First Name: " + strFN);
+        tvLN.setText("Last Name: " + strLN);
+        tvBD.setText("Birth Date: " + strBD);
+        tvPN.setText("Phone Number: " + strPN);
     }
 }

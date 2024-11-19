@@ -50,11 +50,11 @@
             android:layout_weight="0.1" />
 
         <TextView
-            android:id="@+id/tvLN"
+            android:id="@+id/tvFN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="TextView" />
+            android:text="First Name:" />
 
         <Space
             android:layout_width="match_parent"
@@ -62,11 +62,11 @@
             android:layout_weight="0.1" />
 
         <TextView
-            android:id="@+id/tvFN"
+            android:id="@+id/tvLN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="TextView" />
+            android:text="Last name:" />
 
         <Space
             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="TextView" />
+            android:text="Birth date:" />
 
         <Space
             android:layout_width="0dp"
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="TextView" />
+            android:text="Phone number:" />
 
     </LinearLayout>
 
